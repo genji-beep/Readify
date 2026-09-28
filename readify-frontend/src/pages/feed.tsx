@@ -62,6 +62,27 @@ interface BackendFeedReview {
 
 type BackendFeedRow = BackendFeedPost | BackendFeedReview;
 
+interface CreatedPostResponse {
+  postId: number;
+  caption: string;
+  visibility: 'PUBLIC' | 'PRIVATE' | 'JUST_ME';
+  createdAt: string;
+  likeCount?: number;
+  likedByMe?: boolean;
+  commentCount?: number;
+}
+
+interface CreatedReviewResponse {
+  reviewId: number;
+  rating: number;
+  review: string;
+  createdAt: string;
+  likeCount?: number;
+  likedByMe?: boolean;
+  commentCount?: number;
+  book: BackendFeedReview['book'];
+}
+
 interface FeedResponse {
   items: BackendFeedRow[];
   limit: number;
@@ -532,9 +553,18 @@ export default function Feed() {
       return;
     }
 
+    // The create endpoints don't send the author back, so build it from the
+    // logged-in user (this is what the profile page does too).
+    const viewerAuthor: BackendAuthor = {
+      userId: viewer.userId,
+      name: viewer.name,
+      username: viewer.username,
+      profilePicture: viewer.profilePicture,
+    };
+
     try {
       if (payload.isReview) {
-        const response = await apiClient.post<{ review: BackendFeedReview }>('/reviews', {
+        const response = await apiClient.post<{ review: CreatedReviewResponse }>('/reviews', {
           rating: payload.rating,
           review: payload.content,
           // If the user picked a suggestion, send its bookId so the backend
@@ -543,14 +573,33 @@ export default function Feed() {
             ? { bookId: Number(payload.bookId) }
             : { title: payload.bookTitle, author: payload.bookAuthor }),
         });
-        setItems((current) => [toFeedItem({ ...response.data.review, type: 'review' }), ...current]);
+        const created = response.data.review;
+        const newReview = toFeedItem({
+          ...created,
+          type: 'review',
+          author: viewerAuthor,
+          likeCount: created.likeCount ?? 0,
+          likedByMe: created.likedByMe ?? false,
+          commentCount: created.commentCount ?? 0,
+        });
+        setItems((current) => [newReview, ...current]);
         toast.success('Review published!');
       } else {
-        const response = await apiClient.post<{ post: BackendFeedPost }>('/posts', {
+        const response = await apiClient.post<{ post: CreatedPostResponse }>('/posts', {
           caption: payload.content,
           visibility: payload.visibility === 'only_me' ? 'JUST_ME' : payload.visibility.toUpperCase(),
         });
-        setItems((current) => [toFeedItem({ ...response.data.post, type: 'post' }), ...current]);
+        const created = response.data.post;
+        const newPost = toFeedItem({
+          ...created,
+          type: 'post',
+          author: viewerAuthor,
+          book: null,
+          likeCount: created.likeCount ?? 0,
+          likedByMe: created.likedByMe ?? false,
+          commentCount: created.commentCount ?? 0,
+        });
+        setItems((current) => [newPost, ...current]);
         toast.success('Posted!');
       }
     } catch {
