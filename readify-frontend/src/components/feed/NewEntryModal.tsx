@@ -190,10 +190,10 @@ export function NewEntryModal({
 
   return (
     <Modal title={isReview ? 'Review' : 'Post'} onClose={onClose}>
-      <div className="grid gap-4 md:grid-cols-[0.85fr_1.4fr] items-stretch min-h-[420px]">
+      <div className="grid gap-4 md:grid-cols-[0.85fr_1.4fr] items-stretch md:min-h-[420px]">
         <div className="space-y-4">
           <div className="rounded-2xl border border-gray-100 bg-background p-4 dark:border-gray-800 dark:bg-background-dark">
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-text dark:text-text-dark">Create something new</p>
                 <p className="mt-1 text-xs text-textSecondary dark:text-textSecondary-dark">Choose whether to share a post or leave a review.</p>
@@ -220,7 +220,7 @@ export function NewEntryModal({
           </div>
 
           <div className="rounded-2xl border border-gray-100 bg-background p-4 dark:border-gray-800 dark:bg-background-dark">
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-text dark:text-text-dark">Visibility</p>
                 <p className="mt-1 text-xs text-textSecondary dark:text-textSecondary-dark">

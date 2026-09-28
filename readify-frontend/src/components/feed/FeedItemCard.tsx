@@ -61,15 +61,15 @@ export function FeedItemCard({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-card dark:bg-card-dark p-5 shadow-sm"
+            className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-card dark:bg-card-dark p-4 shadow-sm sm:p-5"
         >
             <div className="flex items-start gap-3">
                 <Link to={`/profile/${encodeURIComponent(item.author.username)}`}>
                     <Avatar name={item.author.name} src={item.author.avatarUrl} />
                 </Link>
                 <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                        <div className="flex flex-wrap items-center gap-x-2">
+                    <div className="flex items-start justify-between gap-2">
+                        <div className="flex min-w-0 flex-wrap items-center gap-x-2">
                             <Link to={`/profile/${encodeURIComponent(item.author.username)}`} className="font-semibold text-text dark:text-text-dark hover:underline">
                                 {item.author.name}
                             </Link>
@@ -137,7 +137,7 @@ export function FeedItemCard({
                     </div>
 
                     {item.book && (
-                        <div className="mt-4 rounded-2xl border border-gray-100 bg-background/80 p-4 dark:border-gray-800 dark:bg-background-dark/70">
+                        <div className="mt-4 rounded-2xl border border-gray-100 bg-background/80 p-3 sm:p-4 dark:border-gray-800 dark:bg-background-dark/70">
                             <div className="flex items-start justify-between gap-3">
                                 <div className="flex min-w-0 flex-1 items-start gap-3">
                                     <Link to={`/books?id=${item.book.id}`} className="shrink-0">
@@ -190,9 +190,9 @@ export function FeedItemCard({
                         </div>
                     )}
 
-                    <p className="mt-3 whitespace-pre-wrap text-sm text-text dark:text-text-dark">{item.content}</p>
+                    <p className="mt-3 whitespace-pre-wrap break-words text-sm text-text dark:text-text-dark">{item.content}</p>
 
-                    <div className="mt-4 flex items-center gap-6 text-textSecondary dark:text-textSecondary-dark">
+                    <div className="mt-4 flex items-center gap-4 sm:gap-6 text-textSecondary dark:text-textSecondary-dark">
                         <motion.button
                             type="button"
                             onClick={() => onToggleLike(item.id)}

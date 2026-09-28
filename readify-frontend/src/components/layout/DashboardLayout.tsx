@@ -151,6 +151,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   };
 
+  const sidebarWidgets = (
+    <>
+      <AiPickCard pick={aiPick} />
+      {trendingBooks.length > 0 && <TrendingCard books={trendingBooks} />}
+      {suggestedReaders.length > 0 && (
+        <ReadersToFollowCard readers={suggestedReaders} onToggleFollow={handleToggleFollow} />
+      )}
+    </>
+  );
+
   return (
     <div className="relative min-h-screen bg-background dark:bg-background-dark flex flex-col lg:flex-row w-full transition-colors duration-200">
       {/* Mobile Header Bar (Visible when minimized or on smaller displays) */}
@@ -177,16 +187,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main Content Area */}
       <main className="flex-1 min-w-0 px-4 py-6 sm:px-8 sm:py-8 max-w-4xl mx-auto w-full">
         {children}
+
+        {isFeedPage && <section className="mt-8 space-y-6 xl:hidden">{sidebarWidgets}</section>}
       </main>
 
       {/* Right Sidebar Widgets - Visible ONLY on the Feed page */}
       {isFeedPage && (
         <aside className="hidden xl:block w-80 p-6 space-y-6 sticky top-0 h-screen overflow-y-auto scrollbar-hide border-l border-gray-100 dark:border-gray-800 shrink-0">
-          <AiPickCard pick={aiPick} />
-          {trendingBooks.length > 0 && <TrendingCard books={trendingBooks} />}
-          {suggestedReaders.length > 0 && (
-            <ReadersToFollowCard readers={suggestedReaders} onToggleFollow={handleToggleFollow} />
-          )}
+          {sidebarWidgets}
         </aside>
       )}
     </div>

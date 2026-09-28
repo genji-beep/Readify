@@ -14,7 +14,7 @@ export function Modal({ title, onClose, children }: ModalProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-3 sm:p-4"
       onClick={onClose}
     >
       <motion.div
@@ -23,7 +23,7 @@ export function Modal({ title, onClose, children }: ModalProps) {
         exit={{ opacity: 0, y: 16, scale: 0.98 }}
         transition={{ duration: 0.2 }}
         onClick={(event) => event.stopPropagation()}
-        className="w-full max-w-3xl rounded-2xl bg-card dark:bg-card-dark p-6 shadow-lg"
+        className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-card dark:bg-card-dark p-4 shadow-lg sm:p-6"
       >
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-lg font-bold text-text dark:text-text-dark">{title}</h2>

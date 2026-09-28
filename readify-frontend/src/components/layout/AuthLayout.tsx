@@ -47,12 +47,12 @@ export function AuthLayout({ children }: AuthLayoutProps) {
         />
       </div>
 
-      <div className="flex w-full flex-1 items-center justify-center px-6 py-12 lg:w-[55%]">
+      <div className="flex w-full flex-1 items-center justify-center px-4 py-8 sm:px-6 sm:py-12 lg:w-[55%]">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="w-full max-w-md rounded-3xl bg-card p-8 shadow-[0_20px_60px_-15px_rgba(91,92,235,0.15)] sm:p-10 lg:shadow-none"
+          className="w-full max-w-md rounded-3xl bg-card p-6 shadow-[0_20px_60px_-15px_rgba(91,92,235,0.15)] sm:p-10 lg:shadow-none"
         >
           <div className="mb-6 flex justify-center lg:hidden">
             <Logo dark />
