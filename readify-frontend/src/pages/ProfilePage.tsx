@@ -986,16 +986,16 @@ export default function ProfilePage() {
           )}
 
           {/* Profile Header */}
-          <div className="flex items-start gap-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-card dark:bg-card-dark p-6 shadow-sm">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-card dark:bg-card-dark p-4 sm:p-6 shadow-sm">
             <Avatar
               name={profile.user.name}
               src={photoPreview ?? resolveMediaUrl(profile.user.profilePicture)}
               size="lg"
-              className="h-24 w-24 border-2 border-white text-2xl shadow-md"
+              className="h-20 w-20 sm:h-24 sm:w-24 shrink-0 border-2 border-white text-2xl shadow-md"
             />
-            <div className="flex-1 space-y-2">
+            <div className="min-w-0 flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-2xl font-bold text-text dark:text-text-dark">{profile.user.name}</h1>
+                <h1 className="break-words text-2xl font-bold text-text dark:text-text-dark">{profile.user.name}</h1>
                 {isOwnProfile && (
                   <div className="flex flex-wrap gap-2">
                     <button
@@ -1126,7 +1126,7 @@ export default function ProfilePage() {
                 </div>
               )}
               {shouldShowFollowStats && (
-                <div className="flex gap-8 pt-3 text-sm">
+                <div className="flex flex-wrap gap-x-6 gap-y-2 pt-3 text-sm sm:gap-x-8">
                   <button
                     type="button"
                     onClick={() => setActiveModal('followers')}
@@ -1150,7 +1150,7 @@ export default function ProfilePage() {
                 </div>
               )}
               {!shouldShowFollowStats && (
-                <div className="flex gap-8 pt-3 text-sm">
+                <div className="flex flex-wrap gap-x-6 gap-y-2 pt-3 text-sm sm:gap-x-8">
                   <div>
                     <span className="font-bold text-text dark:text-text-dark">{profile.reviewsCount}</span>{' '}
                     <span className="text-textSecondary dark:text-textSecondary-dark">
@@ -1169,7 +1169,7 @@ export default function ProfilePage() {
       <div className={showQuotesPanel ? 'grid grid-cols-1 lg:grid-cols-3 gap-8 items-start' : 'grid grid-cols-1 gap-8 items-start'}>
         {/* Left: Posts / Reviews Section */}
         <div className={showQuotesPanel ? 'lg:col-span-2 space-y-6' : 'space-y-6'}>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-5">
               {shouldShowFollowStats && (
                 <button
@@ -1280,7 +1280,7 @@ export default function ProfilePage() {
         {/* Right: Quotes Section - visible to the owner and to friends */}
         {showQuotesPanel && (
           <div className="lg:col-span-1">
-            <div className="sticky top-6 space-y-4 rounded-2xl border border-gray-100 dark:border-gray-800 bg-card dark:bg-card-dark p-6 shadow-sm">
+            <div className="lg:sticky lg:top-6 space-y-4 rounded-2xl border border-gray-100 dark:border-gray-800 bg-card dark:bg-card-dark p-6 shadow-sm">
               <div className="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-3">
                 <h3 className="flex items-center gap-2 text-sm font-bold text-text dark:text-text-dark">
                   Quotes

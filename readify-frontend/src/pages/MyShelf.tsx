@@ -283,7 +283,7 @@ export default function MyShelfPage() {
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
           <div>
             <h1 className="text-2xl font-bold text-text dark:text-text-dark">My Bookshelf</h1>
             <p className="text-textSecondary dark:text-textSecondary-dark mt-1">Your personal reading collection</p>
@@ -298,12 +298,12 @@ export default function MyShelfPage() {
         </div>
 
         {/* Interactive Tabs */}
-        <div className="flex items-center gap-6 border-b border-gray-200 dark:border-gray-800 mb-6">
+        <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide border-b border-gray-200 dark:border-gray-800 mb-6">
           {TABS.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`pb-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`shrink-0 pb-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 activeTab === tab.key
                   ? "text-indigo-600 border-indigo-600"
                   : "text-gray-400 dark:text-gray-500 border-transparent hover:text-gray-600 dark:hover:text-gray-300"
@@ -392,7 +392,7 @@ export default function MyShelfPage() {
         {/* Add Book Modal Form */}
         {isModalOpen && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50 p-4">
-            <div className="bg-white dark:bg-card-dark rounded-2xl max-w-md w-full p-6 shadow-xl relative animate-in fade-in zoom-in-95 duration-200">
+            <div className="max-h-[90vh] overflow-y-auto bg-white dark:bg-card-dark rounded-2xl max-w-md w-full p-4 sm:p-6 shadow-xl relative animate-in fade-in zoom-in-95 duration-200">
               <button
                 onClick={() => {
                   setIsModalOpen(false);
@@ -538,7 +538,7 @@ export default function MyShelfPage() {
 
         {isFinishPromptOpen && bookToFinish && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-[60] p-4">
-            <div className="bg-white dark:bg-card-dark rounded-2xl max-w-md w-full p-6 shadow-xl">
+            <div className="max-h-[90vh] overflow-y-auto bg-white dark:bg-card-dark rounded-2xl max-w-md w-full p-4 sm:p-6 shadow-xl">
               <h2 className="text-xl font-bold text-text dark:text-text-dark">Finished reading?</h2>
               <p className="mt-2 text-sm text-textSecondary dark:text-textSecondary-dark">
                 Would you like to leave a review for {bookToFinish.title} and share your thoughts?

@@ -652,7 +652,7 @@ export default function Feed() {
 
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-text dark:text-text-dark">
+              <h1 className="text-xl font-bold text-text dark:text-text-dark sm:text-2xl">
                 {getGreeting()}, {currentUserName}
               </h1>
               <p className="mt-1 text-sm text-textSecondary dark:text-textSecondary-dark">Here's what your reading community is sharing</p>
@@ -685,7 +685,7 @@ export default function Feed() {
           </div>
 
           {friendQuotes.length > 0 && (
-            <div className="mb-6 rounded-2xl border border-gray-100 bg-card p-5 shadow-sm dark:border-gray-800 dark:bg-card-dark">
+            <div className="mb-6 rounded-2xl border border-gray-100 bg-card p-4 shadow-sm dark:border-gray-800 dark:bg-card-dark sm:p-5">
               <div className="flex items-center justify-between gap-2">
                 <div>
                   <h2 className="text-lg font-semibold text-text dark:text-text-dark">Quotes from friends</h2>
@@ -703,7 +703,7 @@ export default function Feed() {
                       </div>
                       <span className="text-xs text-textSecondary dark:text-textSecondary-dark">{formatRelativeTime(quote.sharedAt)}</span>
                     </div>
-                    <p className="mt-2 text-sm italic text-textSecondary dark:text-textSecondary-dark">“{quote.content}”</p>
+                    <p className="mt-2 break-words text-sm italic text-textSecondary dark:text-textSecondary-dark">“{quote.content}”</p>
                     <button
                       type="button"
                       onClick={() => handleToggleFriendQuoteLike(quote.id)}

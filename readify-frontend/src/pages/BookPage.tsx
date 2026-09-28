@@ -294,13 +294,13 @@ export default function BookPage() {
                     Back
                 </button>
 
-                <div className="mt-6 grid gap-8 sm:grid-cols-[220px_1fr]">
+                <div className="mt-6 grid gap-6 sm:gap-8 sm:grid-cols-[220px_1fr]">
                     <div>
                         {book.coverUrl ? (
-                            <img src={book.coverUrl} alt={book.title} className="h-72 w-full rounded-xl object-cover shadow-sm" />
+                            <img src={book.coverUrl} alt={book.title} className="mx-auto h-64 w-full max-w-[200px] rounded-xl object-cover shadow-sm sm:h-72 sm:max-w-none" />
                         ) : (
                             <div
-                                className="flex h-72 w-full items-center justify-center rounded-xl text-3xl font-bold text-white shadow-sm"
+                                className="mx-auto flex h-64 w-full max-w-[200px] items-center justify-center rounded-xl text-3xl sm:h-72 sm:max-w-none font-bold text-white shadow-sm"
                                 style={{ backgroundColor: book.coverColor ?? '#5B5CEB' }}
                             >
                                 {book.title.slice(0, 2).toUpperCase()}
@@ -325,7 +325,7 @@ export default function BookPage() {
                             </span>
                         )}
 
-                        <h1 className="mt-3 text-3xl font-bold text-text">{book.title}</h1>
+                        <h1 className="mt-3 break-words text-2xl font-bold text-text sm:text-3xl">{book.title}</h1>
                         <p className="mt-1 text-lg text-textSecondary">{book.author}</p>
 
                         <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-textSecondary">
